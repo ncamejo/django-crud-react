@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-cew-x@&qsh)s-2p!0@+gzgnc&5ht)01icorj!gqs)1!y1yl_o#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost","web-production-2eca.up.railway.app"]
+ALLOWED_HOSTS = ["localhost","127.0.0.1","web-production-2eca.up.railway.app"]
 
 
 # Application definition
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'django_crud_api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'client', 'dist')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,20 +81,20 @@ WSGI_APPLICATION = 'django_crud_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     "default": dj_database_url.config(default="sqlite://db.sqlite3")
-# }
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'CDceDFaf4F6cCf4dcGDF1ec2fD5ccfAA',
-        'HOST': 'roundhouse.proxy.rlwy.net',
-        'PORT': 44269,
-    }
+    "default": dj_database_url.config(default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3"))
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'CDceDFaf4F6cCf4dcGDF1ec2fD5ccfAA',
+#         'HOST': 'roundhouse.proxy.rlwy.net',
+#         'PORT': 44269,
+#     }
+# }
 
 
 
@@ -146,7 +146,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # cors authorization
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173'
+    'http://localhost:5173',
+    'http://127.0.0.1:8000'
 ]
 
 REST_FRAMEWORK = {
