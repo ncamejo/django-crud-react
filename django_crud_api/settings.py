@@ -81,9 +81,21 @@ WSGI_APPLICATION = 'django_crud_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": dj_database_url.config(default="sqlite://db.sqlite3")
+# }
+
 DATABASES = {
-    "default": dj_database_url.config(default="sqlite://db.sqlite3")
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'CDceDFaf4F6cCf4dcGDF1ec2fD5ccfAA',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': 44269,
+    }
 }
+
 
 
 # Password validation
